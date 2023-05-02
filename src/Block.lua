@@ -38,7 +38,7 @@ function Block:move(direction)
         self.gridX = self.gridX + 1
     elseif direction == 'down' then
         self.gridY = self.gridY + 1
-    else
+    elseif direction == 'up' then
         self.gridY = self.gridY - 1
     end
 end
