@@ -106,37 +106,6 @@ function Grid:moveValid(block, xOff, yOff)
     return true
 end
 
--- function Grid:checkSides(block, direction)
---     -- check left or right block
---     local adjacentBlock = direction == 'left' and -1 or 1
-
---     -- check the adjacent square to each block
---     for y = 1, block:blockHeight() do
---         for x = 1, block:blockWidth() do
---             if self.grid[block.gridX + (x - 1) + adjacentBlock][block.gridY + (y - 1)]['isBlock'] == 1 and
---                 block:isSquare(y, x) == 1 then
---                 return false
---             end
---         end
---     end
-
---     return true
--- end
-
--- function Grid:checkBelow(block)
---     -- check the adjacent square to each block
---     for y = 1, block:blockHeight() do
---         for x = 1, block:blockWidth() do
---             if self.grid[block.gridX + (x - 1)][block.gridY + (y - 1) + 1]['isBlock'] == 1 and
---                 block:isSquare(y, x) == 1 then
---                 return false
---             end
---         end
---     end
-
---     return true
--- end
-
 function Grid:addBlock(newBlock)
     local block = newBlock.shape[newBlock.orientation]
 

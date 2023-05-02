@@ -43,12 +43,6 @@ function Block:move(direction)
     end
 end
 
-function Block:update(dt)
-
-
-
-end
-
 function Block:render(offsetX, offsetY)
     local shape = self.shape[self.orientation]
     for y = 1, #shape do
