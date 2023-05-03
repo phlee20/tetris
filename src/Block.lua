@@ -9,6 +9,8 @@ function Block:init(x, y, type)
     self.color = self.type.color
 
     self.orientation = 1
+
+    self.preview = false
 end
 
 function Block:blockWidth()
@@ -48,8 +50,13 @@ function Block:render(offsetX, offsetY)
     for y = 1, #shape do
         for x = 1, #shape[y] do
             if shape[y][x] == 1 then
-                love.graphics.setColor(self.color.r, self.color.g, self.color.b, 1)
-                love.graphics.setLineWidth(3)
+                if self.preview then
+                    love.graphics.setColor(self.color.r, self.color.g, self.color.b, 0.2)
+                    love.graphics.setLineWidth(1)
+                else
+                    love.graphics.setColor(self.color.r, self.color.g, self.color.b, 1)
+                    love.graphics.setLineWidth(3)
+                end
                 love.graphics.rectangle('fill', offsetX + (self.gridX + x - 2) * SQUARE_SIZE,
                     offsetY + (self.gridY + y - 2) * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE)
                 love.graphics.setColor(1, 1, 1, 1)

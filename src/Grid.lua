@@ -5,6 +5,10 @@ function Grid:init()
     self.y = VIRTUAL_HEIGHT / 2 - GRID_HEIGHT / 2
 
     self.grid = self:initializeGrid()
+
+    self.showGridlines = true
+
+    self.previewBlock = nil
 end
 
 function Grid:initializeGrid()
@@ -13,18 +17,6 @@ function Grid:initializeGrid()
     -- create a border of filled blocks for a wall and ground
     for y = 1, GRID_HEIGHT_SQUARES do
         table.insert(grid, self:insertBlankLine(y))
-        for x = 1, GRID_WIDTH_SQUARES do
-            -- local square = 0
-
-            -- if y >= GRID_HEIGHT_SQUARES - 2 or x <= 3 or x >= GRID_WIDTH_SQUARES - 2 then
-            --     square = 1
-            -- end
-
-            -- grid[y][x] = {
-            --     isBlock = square,
-            --     color = { r = 0, g = 0, b = 0, a = 0 }
-            -- }
-        end
     end
 
     return grid
@@ -54,8 +46,8 @@ function Grid:update(dt)
 end
 
 function Grid:render()
-    for y = 1, GRID_HEIGHT_SQUARES do
-        for x = 1, GRID_WIDTH_SQUARES do
+    for y = 1, GRID_HEIGHT_SQUARES - 3 do
+        for x = 4, GRID_WIDTH_SQUARES - 3 do
             if self.grid[y][x]['isBlock'] then
                 local color = self.grid[y][x]['color']
                 love.graphics.setColor(color.r, color.g, color.b, 1)
@@ -65,9 +57,18 @@ function Grid:render()
                 love.graphics.setColor(1, 1, 1, color.a)
                 love.graphics.rectangle('line', self.x + (x - 1) * SQUARE_SIZE, self.y + (y - 1) * SQUARE_SIZE,
                     SQUARE_SIZE, SQUARE_SIZE)
+                love.graphics.setColor(1, 1, 1, 1)
+                
+                if self.showGridlines then
+                    love.graphics.setLineWidth(0.5)
+                    love.graphics.rectangle('line', self.x + (x - 1) * SQUARE_SIZE, self.y + (y - 1) * SQUARE_SIZE,
+                        SQUARE_SIZE, SQUARE_SIZE)
+                end
             end
         end
     end
+
+    self.previewBlock:render(self.x, self.y)
 
     -- render the play area inside the walls and ground
     love.graphics.setColor(1, 1, 1, 1)
@@ -78,7 +79,7 @@ end
 
 function Grid:checkRotation(block)
     -- create a temporary block for testing rotation collisions
-    tempBlock = Block(block.gridX, block.gridY, block.type)
+    local tempBlock = Block(block.gridX, block.gridY, block.type)
 
     tempBlock.orientation = block.orientation + 1
     if tempBlock.orientation > #tempBlock.shape then
@@ -194,4 +195,18 @@ function Grid:removeLines(lines)
         table.remove(self.grid, lines[i])
         table.insert(self.grid, 1, self:insertBlankLine())
     end
+end
+
+function Grid:showPreview(block)
+    self.previewBlock = Block(block.gridX, block.gridY, block.type)
+    self.previewBlock.orientation = block.orientation
+    self.previewBlock.preview = true
+
+    -- move block down until it collides
+    while self:moveValid(self.previewBlock, 0, 0) do
+        self.previewBlock:move('down')
+    end
+
+    -- shift the block up one to its final resting spot
+    self.previewBlock:move('up')
 end
