@@ -14,10 +14,15 @@ function love.load()
         canvas = true
     })
 
-    gStateMachine = StateMachine {
-        ['play'] = function() return PlayState() end
-    }
-    gStateMachine:change('play')
+    gStateStack = StateStack()
+
+    gStateStack:push(StartState())
+
+    -- gStateMachine = StateMachine {
+    --     ['start'] = function() return StartState() end,
+    --     ['play'] = function() return PlayState() end
+    -- }
+    -- gStateMachine:change('start')
 
     love.keyboard.keysPressed = {}
 end
@@ -39,8 +44,9 @@ function love.keyboard.wasPressed(key)
 end
 
 function love.update(dt)
-
-    gStateMachine:update(dt)
+    Timer.update(dt)
+    gStateStack:update(dt)
+    -- gStateMachine:update(dt)
 
     love.keyboard.keysPressed = {}
 end
@@ -48,7 +54,12 @@ end
 function love.draw()
     push:start()
 
-    gStateMachine:render()
+    gStateStack:render()
+    -- gStateMachine:render()
 
     push:finish()
+end
+
+function loadHighScores()
+
 end

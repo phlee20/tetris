@@ -8,12 +8,17 @@ require 'src/constants'
 require 'src/Block'
 require 'src/blocks_def'
 require 'src/Grid'
+require 'src/gui/Panel'
 
 require 'src/StateMachine'
 require 'src/states/BaseState'
 require 'src/states/StateStack'
 require 'src/states/StartState'
 require 'src/states/PlayState'
+require 'src/states/MessageState'
+require 'src/states/HighScoreState'
+require 'src/states/CountdownState'
+require 'src/states/MenuState'
 
 
 gTextures = {

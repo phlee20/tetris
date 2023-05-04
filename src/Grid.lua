@@ -2,11 +2,11 @@ Grid = Class {}
 
 function Grid:init()
     self.x = VIRTUAL_WIDTH / 2 - GRID_WIDTH / 2
-    self.y = VIRTUAL_HEIGHT / 2 - GRID_HEIGHT / 2
+    self.y = VIRTUAL_HEIGHT / 2 - GRID_HEIGHT / 2 + 50
 
     self.grid = self:initializeGrid()
 
-    self.showGridlines = true
+    self.showGridlines = false
 
     self.previewBlock = nil
 end
