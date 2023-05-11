@@ -14,11 +14,11 @@ function StartState:init()
 
     -- letters of TETRIS and their spacing relative to the center
     self.letterTable = {
-        { 'T', -106 },
-        { 'E', -63 },
-        { 'T', -21 },
-        { 'R', 21 },
-        { 'I', 63 },
+        { 'B', -106 },
+        { 'L', -63 },
+        { 'O', -21 },
+        { 'C', 21 },
+        { 'K', 63 },
         { 'S', 105 }
     }
 end
@@ -61,7 +61,7 @@ function StartState:drawTitleText()
         
     -- draw shadow
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.printf('TETRIS', 3, VIRTUAL_HEIGHT / 3 + 3, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('BLOCKS', 3, VIRTUAL_HEIGHT / 3 + 3, VIRTUAL_WIDTH, 'center')
     love.graphics.setColor(1, 1, 1, 1)
 
     for i = 1, 6 do
