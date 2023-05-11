@@ -2,7 +2,7 @@ Grid = Class {}
 
 function Grid:init()
     self.x = VIRTUAL_WIDTH / 2 - GRID_WIDTH / 2
-    self.y = VIRTUAL_HEIGHT / 2 - GRID_HEIGHT / 2 + 50
+    self.y = VIRTUAL_HEIGHT / 2 - GRID_HEIGHT / 2 + 60
 
     self.grid = self:initializeGrid()
 

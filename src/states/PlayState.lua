@@ -10,7 +10,7 @@ function PlayState:enter()
     self.score = 0
     self.scoreIncrease = 100
     self.level = 1
-    self.goalIncrease = 300
+    self.goalIncrease = 1000
     self.goal = self.level * self.goalIncrease
 
     self.timer = 0
@@ -134,7 +134,6 @@ function PlayState:render()
     love.graphics.setFont(gFonts['medium'])
     love.graphics.print(tostring('Level: ' .. self.level), 10, 10)
     love.graphics.print(tostring('Score: ' .. self.score), 10, 60)
-    love.graphics.print(tostring('Speed: ' .. self.blockSpeed), 10, 110)
     love.graphics.printf("(p)ause", 0, VIRTUAL_HEIGHT - 60, VIRTUAL_WIDTH, 'right')
 end
 

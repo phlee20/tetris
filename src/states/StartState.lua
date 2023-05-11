@@ -25,7 +25,7 @@ end
 
 function StartState:update(dt)
     if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then
-        self.currentMenuItem = self.currentMenuItem == 1 and 2 or 1
+        self.currentMenuItem = 1
     end
 
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
@@ -38,8 +38,6 @@ function StartState:update(dt)
                 end))
             end))
             -- gStateMachine:change('play')
-        else
-            -- TODO: high scores
         end
     end
 end
@@ -89,15 +87,15 @@ function StartState:drawOptions()
     love.graphics.printf('Start', 0, VIRTUAL_HEIGHT / 3 * 2 - 50, VIRTUAL_WIDTH, 'center')
 
     -- draw High Scores option
-    love.graphics.setColor(34 / 255, 32 / 255, 52 / 255, 1)
-    love.graphics.printf('High Scores', 3, VIRTUAL_HEIGHT / 3 * 2 + 50 + 3, VIRTUAL_WIDTH, 'center')
-    love.graphics.setColor(1, 1, 1, 1)
+    -- love.graphics.setColor(34 / 255, 32 / 255, 52 / 255, 1)
+    -- love.graphics.printf('High Scores', 3, VIRTUAL_HEIGHT / 3 * 2 + 50 + 3, VIRTUAL_WIDTH, 'center')
+    -- love.graphics.setColor(1, 1, 1, 1)
 
-    if self.currentMenuItem == 2 then
-        love.graphics.setColor(99 / 255, 155 / 255, 1, 1)
-    else
-        love.graphics.setColor(48 / 255, 96 / 255, 130 / 255, 1)
-    end
+    -- if self.currentMenuItem == 2 then
+    --     love.graphics.setColor(99 / 255, 155 / 255, 1, 1)
+    -- else
+    --     love.graphics.setColor(48 / 255, 96 / 255, 130 / 255, 1)
+    -- end
 
-    love.graphics.printf('High Scores', 0, VIRTUAL_HEIGHT / 3 * 2 + 50, VIRTUAL_WIDTH, 'center')
+    -- love.graphics.printf('High Scores', 0, VIRTUAL_HEIGHT / 3 * 2 + 50, VIRTUAL_WIDTH, 'center')
 end

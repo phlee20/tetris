@@ -59,7 +59,3 @@ function love.draw()
 
     push:finish()
 end
-
-function loadHighScores()
-
-end

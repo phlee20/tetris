@@ -16,10 +16,7 @@ require 'src/states/StateStack'
 require 'src/states/StartState'
 require 'src/states/PlayState'
 require 'src/states/MessageState'
-require 'src/states/HighScoreState'
-require 'src/states/CountdownState'
 require 'src/states/MenuState'
-
 
 gTextures = {
 
